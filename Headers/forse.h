@@ -1,0 +1,1 @@
+float SimpleForse(float);
