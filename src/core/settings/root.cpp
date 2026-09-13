@@ -1,2 +1,4 @@
-unsigned int SW = 800;
-unsigned int SW = 600;
+#include "Headers/root.h"
+
+unsigned int SW = 400u;
+unsigned int SH = 800u;

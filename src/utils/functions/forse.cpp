@@ -1,30 +1,32 @@
+#include "Headers/forse.h"
 #include <cmath>
 
-float E1 = -12;
-float E2 = 8;
-float r1 = 30;
-float r2 = 50;
-float r3 = 60;
 
-float a1 = 4*E1*r1 / (r2 - r1);
-float b1 = -4*E1*std::pow(r1, 2) / (r2 - r1);
+double E1 = -12;
+double E2 = 8;
+double r1 = 30;
+double r2 = 50;
+double r3 = 60;
 
-float a2 = -4*E1 / std::pow((r2 - r1), 2);
-float b2 = 4*E1*(r1+r2) / std::pow((r2 - r1), 2);
-float c2 = -4*E1*r1*r2 / std::pow((r2 - r1), 2);
+double a1 = 4*E1*r1 / (r2 - r1);
+double b1 = -4*E1*std::pow(r1, 2) / (r2 - r1);
 
-float a3 = -4*std::pow(E1, 2) / E2 / std::pow((r2 - r1), 2);
-float b3 = 8*std::pow(E1, 2)*r2 / E2 / std::pow((r2 - r1), 2) - 4*E1 / (r2 - r1);
-float c3 = -( (4 * std::pow(E1, 2) * std::pow(r2, 2)) / (E2 * std::pow((r2 - r1), 2)) ) + ( (4 * E1 * r2) / (r2 - r1) );
+double a2 = -4*E1 / std::pow((r2 - r1), 2);
+double b2 = 4*E1*(r1+r2) / std::pow((r2 - r1), 2);
+double c2 = -4*E1*r1*r2 / std::pow((r2 - r1), 2);
 
-float A = a3 * r3 ** 2 + b3 * r3 + c3;
-float B = 2 * a3 * r3 + b3;
+double a3 = -4*std::pow(E1, 2) / E2 / std::pow((r2 - r1), 2);
+double b3 = 8*std::pow(E1, 2)*r2 / E2 / std::pow((r2 - r1), 2) - 4*E1 / (r2 - r1);
+double c3 = -( (4 * std::pow(E1, 2) * std::pow(r2, 2)) / (E2 * std::pow((r2 - r1), 2)) ) + ( (4 * E1 * r2) / (r2 - r1) );
 
-float a4 = A / B + r3;
-float b4 = A * (r3 - a4);
+double A = a3 * std::pow(r3, 2) + b3 * r3 + c3;
+double B = 2 * a3 * r3 + b3;
+
+double a4 = A / B + r3;
+double b4 = A * (r3 - a4);
 
 
-float SimpleForse(float r)
+double SimpleForse(double r)
 {
     if(r < r1)
     {

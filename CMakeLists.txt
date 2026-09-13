@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.24) # FetchContent требует современную версию CMake
-project(sym VERSION 0.1.0 LANGUAGES C CXX)
+project(project-materials VERSION 0.1.0 LANGUAGES C CXX)
 
 # SFML 3.1.0 строго требует поддержку стандарта C++17
 set(CMAKE_CXX_STANDARD 20)
@@ -14,11 +14,24 @@ FetchContent_Declare(
 )
 FetchContent_MakeAvailable(SFML)
 
+
+
 # Создание исполняемого файла из вашего main.cpp
-add_executable(sym main.cpp
-    Headers/forse.h
-    Headers/root.h
-    Headers/iterator.h)
+add_executable(project-materials main.cpp
+               src/utils/functions/forse.cpp
+               src/utils/iterator.cpp
+               src/core/settings/root.cpp
+               src/core/settings/customs.cpp)
+
+target_include_directories(project-materials PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}          # корень проекта
+    ${CMAKE_CURRENT_SOURCE_DIR}/src      # чтобы "Headers/xxx.h" работало
+    ${CMAKE_CURRENT_SOURCE_DIR}/Headers  # чтобы просто "xxx.h" работало
+)
+
 
 # Привязка графического и звукового модулей SFML к вашему проекту
-target_link_libraries(sym PRIVATE SFML::Graphics SFML::Audio)
+target_link_libraries(project-materials PRIVATE
+            SFML::Graphics
+            SFML::Audio)
+
