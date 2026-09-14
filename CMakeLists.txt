@@ -19,6 +19,7 @@ FetchContent_MakeAvailable(SFML)
 # Создание исполняемого файла из вашего main.cpp
 add_executable(project-materials main.cpp
                src/utils/functions/forse.cpp
+               src/utils/particle_box.cpp
                src/utils/iterator.cpp
                src/core/settings/root.cpp
                src/core/settings/customs.cpp)

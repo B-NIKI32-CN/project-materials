@@ -10,6 +10,7 @@
 
 
 
+
 int main()
 {
     sf::CircleShape All_sprites_group[1184];
@@ -17,13 +18,7 @@ int main()
     // В SFML 3 размер передается в фигурных скобках {ширина, высота}
     sf::RenderWindow window(sf::VideoMode({SW, SH}), "How it ");
 
-    window.setFramerateLimit(60);
-
-    // Создаем зеленый круг (в SFML 3 радиус передается через float)
-    // sf::CircleShape shape(50.f, 3);
-    // shape.setFillColor(sf::Color::Green);
-    // shape.setPosition({375.f, 275.f});
-    // shape.setOrigin(shape.getGeometricCenter());
+    window.setFramerateLimit(60); 
     
     // Главный цикл программы
     while (window.isOpen())
@@ -91,6 +86,5 @@ int main()
         // window.draw(shape);
         window.display();
     }
-
     return 0;
 }
