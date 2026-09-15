@@ -7,9 +7,27 @@
 #include <iostream>
 #include <cmath>
 
-Iterator::Iterator(): particle_box(new Particle_box(1184u)) {}
+// Связь параметров итератора с числом проходящих итераций на данной расстонянии: N = (delta_r * sqrt(particle_mass) / (delta_time * sqrt(2*E)),
+// E - энергия частицы
+// delta_r - выбранная дистанция, выбирается исхотя из функции сил 
+// particle_mass - масса частицы
+// delta_time - время итерации
+// N - число произошедших итераций на выделенной дистанции, эмпирически выявлено что оптимальное число для интересующей дистанции не менне 10 будет достаточным
 
-Iterator::~Iterator() {delete particle_box;}
+Iterator::Iterator(double mass, double delta_time, unsigned int max_quantity_particles): particle_box(new Particle_box(max_quantity_particles))
+{
+    this->particle_mass = mass;
+    this->delta_time = delta_time;
+
+    this->movability = 1/particle_mass;
+}
+
+Iterator::Iterator(): Iterator(1.f, 0.01f, 1184u) {}
+
+Iterator::~Iterator()
+{
+    delete particle_box;
+}
 
 void Iterator::spawn_particle(double x, double y)
 {
@@ -105,15 +123,15 @@ void Iterator::Particles_update()
 {
     for(unsigned int particle {}; particle<particle_box->now_quantity_particles; particle++)
     {
-        *(particle_box->x_velocity_particles+particle) += *(particle_box->x_forse_particles+particle);
-        *(particle_box->y_velocity_particles+particle) += *(particle_box->y_forse_particles+particle);
+        *(particle_box->x_velocity_particles+particle) += *(particle_box->x_forse_particles+particle) * movability * delta_time;
+        *(particle_box->y_velocity_particles+particle) += *(particle_box->y_forse_particles+particle) * movability * delta_time;
 
         *(particle_box->x_forse_particles+particle) = 0u;
         *(particle_box->y_forse_particles+particle) = 0u;
 
         
-        *(particle_box->x_coords_particles+particle) += *(particle_box->x_velocity_particles+particle);
-        *(particle_box->y_coords_particles+particle) += *(particle_box->y_velocity_particles+particle);
+        *(particle_box->x_coords_particles+particle) += *(particle_box->x_velocity_particles+particle) * delta_time;
+        *(particle_box->y_coords_particles+particle) += *(particle_box->y_velocity_particles+particle) * delta_time;
 
         if(*(particle_box->x_coords_particles+particle)<0)
         {

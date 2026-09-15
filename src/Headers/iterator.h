@@ -7,7 +7,13 @@ class Iterator
     private:
         Particle_box* particle_box;
 
+        double particle_mass;
+        double delta_time;
+
+        double movability;
+
     public:
+        Iterator(double, double, unsigned int);
         Iterator();
         ~Iterator();
 

@@ -36,7 +36,7 @@ double SimpleForse(double r)
     {
         return 2 * a2 * r + b2;
     }
-    else if(r<r3)
+    else if(r < r3)
     {
         return 2 * a3 * r  + b3;
     }

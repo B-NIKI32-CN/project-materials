@@ -14,11 +14,11 @@
 int main()
 {
     sf::CircleShape All_sprites_group[1184];
-    Iterator iterator;
+    Iterator iterator(1.f, 0.004f, 1184u);
     // В SFML 3 размер передается в фигурных скобках {ширина, высота}
     sf::RenderWindow window(sf::VideoMode({SW, SH}), "How it ");
 
-    window.setFramerateLimit(60); 
+    window.setFramerateLimit(100); 
     
     // Главный цикл программы
     while (window.isOpen())
@@ -45,12 +45,12 @@ int main()
                 if (keyPressed->scancode == sf::Keyboard::Scan::Up)
                 {
                     g += 0.01;
-                    std::cout << "g" << g <<std::endl;
+                    std::cout << "g - " << g <<std::endl;
                 }
                 if (keyPressed->scancode == sf::Keyboard::Scan::Down)
                 {
                     g -= 0.01;
-                    std::cout << "g" << g <<std::endl;
+                    std::cout << "g - " << g <<std::endl;
 
                 }
                 if (keyPressed->scancode == sf::Keyboard::Scan::C)
@@ -71,8 +71,11 @@ int main()
             }
             
         }
-
-        iterator.doIteration();
+        for(unsigned i {}; i<250; i++)
+        {
+            iterator.doIteration();
+        }
+        
 
         window.clear();
         for(unsigned int sprite_num {}; sprite_num<iterator.get_quantity_particles();)
