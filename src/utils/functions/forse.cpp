@@ -2,11 +2,51 @@
 #include <cmath>
 
 
-double E1 = -12;
-double E2 = 8;
-double r1 = 30;
-double r2 = 50;
-double r3 = 60;
+
+
+// double E1 = -10; // кучкование
+// double E2 = 10;
+// double r1 = 20;
+// double r2 = 60;
+// double r3 = 90;
+
+
+// double E1 = -10; // кучкование
+// double E2 = 20;
+// double r1 = 20;
+// double r2 = 60;
+// double r3 = 120;
+
+// double E1 = -20; // кучкование
+// double E2 = 10;
+// double r1 = 20;
+// double r2 = 60;
+// double r3 = 75;
+
+
+// double E1 = -10; // кучкование
+// double E2 = 10;
+// double r1 = 20;
+// double r2 = 40;
+// double r3 = 55;
+
+// double E1 = -12; // кучкование
+// double E2 = 8;
+// double r1 = 20;
+// double r2 = 60;
+// double r3 = 55;
+
+// double E1 = -12; // классика  -  гексагональная решетка
+// double E2 = 8;
+// double r1 = 30;
+// double r2 = 50;
+// double r3 = 60;
+
+double E1 = -50; // гексагональная решетка
+double E2 = 50;
+double r1 = 50;
+double r2 = 70;
+double r3 = 85;
 
 double a1 = 4*E1*r1 / (r2 - r1);
 double b1 = -4*E1*std::pow(r1, 2) / (r2 - r1);

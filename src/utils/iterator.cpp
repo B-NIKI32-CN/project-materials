@@ -2,6 +2,7 @@
 #include "Headers/root.h"       
 #include "Headers/customs.h"    
 #include "Headers/forse.h" 
+#include "Headers/heat_dissipation.h"
 #include "Headers/particle_box.h"
 
 #include <iostream>
@@ -46,6 +47,10 @@ double* Iterator::getX_coords_particles()
 {
     return particle_box->x_coords_particles;
 }
+double Iterator::get_delta_time()
+{
+    return delta_time;
+}
 
 unsigned int Iterator::get_quantity_particles()
 {
@@ -83,7 +88,7 @@ void Iterator::ForseSolver()
     for(unsigned int particle {}; particle<particle_box->now_quantity_particles; particle++)
     {
         *(particle_box->x_forse_particles+particle) = 0;
-        *(particle_box->y_forse_particles+particle) = g;
+        *(particle_box->y_forse_particles+particle) = g*particle_mass;
     }
     unsigned int count_of_interaction {};
     for(unsigned int first_particle {}; first_particle<particle_box->now_quantity_particles; first_particle++)
@@ -125,6 +130,9 @@ void Iterator::Particles_update()
     {
         *(particle_box->x_velocity_particles+particle) += *(particle_box->x_forse_particles+particle) * movability * delta_time;
         *(particle_box->y_velocity_particles+particle) += *(particle_box->y_forse_particles+particle) * movability * delta_time;
+
+        *(particle_box->x_velocity_particles+particle) = heat_dissipation(*(particle_box->x_velocity_particles+particle), delta_time);
+        *(particle_box->y_velocity_particles+particle) = heat_dissipation(*(particle_box->y_velocity_particles+particle), delta_time);
 
         *(particle_box->x_forse_particles+particle) = 0u;
         *(particle_box->y_forse_particles+particle) = 0u;

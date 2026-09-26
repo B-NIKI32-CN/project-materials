@@ -3,6 +3,7 @@
 #include <cmath>
 
 #include "Headers/forse.h"
+#include "Headers/heat_dissipation.h"
 #include "Headers/root.h"
 #include "Headers/customs.h"
 #include "Headers/iterator.h"
@@ -14,11 +15,16 @@
 int main()
 {
     sf::CircleShape All_sprites_group[1184];
-    Iterator iterator(1.f, 0.004f, 1184u);
-    // В SFML 3 размер передается в фигурных скобках {ширина, высота}
+
+    Iterator iterator(particle_mass, iteration_delta_time, 1184u);
+
     sf::RenderWindow window(sf::VideoMode({SW, SH}), "How it ");
 
-    window.setFramerateLimit(100); 
+    // std::cout << static_cast<unsigned int>(1/iterator.get_delta_time()) << std::endl;
+
+    std::cout << "Число итераций на кадр: " << static_cast<unsigned int>(1/ (FPS * iteration_delta_time)) << std::endl;
+
+    window.setFramerateLimit(FPS);
     
     // Главный цикл программы
     while (window.isOpen())
@@ -44,12 +50,20 @@ int main()
                 }
                 if (keyPressed->scancode == sf::Keyboard::Scan::Up)
                 {
-                    g += 0.01;
+                    if(g<0)
+                    {
+                        g = 0;
+                    }
+                    g = (g+1)*2;
                     std::cout << "g - " << g <<std::endl;
                 }
                 if (keyPressed->scancode == sf::Keyboard::Scan::Down)
                 {
-                    g -= 0.01;
+                    if(g>0)
+                    {
+                        g = 0;
+                    }
+                    g = (g-1)*2;
                     std::cout << "g - " << g <<std::endl;
 
                 }
@@ -60,20 +74,20 @@ int main()
             }
             else if (const auto* mousePressed = event->getIf<sf::Event::MouseButtonPressed>())
             {
-                sf::CircleShape shape = sf::CircleShape(15.f, 36);
+                sf::CircleShape shape = sf::CircleShape(5.f, 36);
                 shape.setOrigin(shape.getGeometricCenter());
                 shape.setFillColor(sf::Color::Blue);
                 All_sprites_group[iterator.get_quantity_particles()] = shape;
 
                 sf::Vector2i mousePos = sf::Mouse::getPosition(window);
                 iterator.spawn_particle(static_cast<double>(mousePos.x), static_cast<double>(mousePos.y));
-                // iterator.show_particles_stats();
+                iterator.show_particles_stats();
             }
             
         }
-        for(unsigned i {}; i<250; i++)
+        for(unsigned i {}; i<static_cast<unsigned int>(1/ (FPS * iteration_delta_time)); i++)
         {
-            iterator.doIteration();
+        iterator.doIteration();
         }
         
 

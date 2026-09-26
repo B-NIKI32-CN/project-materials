@@ -21,6 +21,7 @@ class Iterator
 
         double* getX_coords_particles();
         double* getY_coords_particles();
+        double get_delta_time();
 
         unsigned int get_quantity_particles();
 

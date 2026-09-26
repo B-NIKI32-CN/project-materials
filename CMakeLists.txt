@@ -19,15 +19,16 @@ FetchContent_MakeAvailable(SFML)
 # Создание исполняемого файла из вашего main.cpp
 add_executable(project-materials main.cpp
                src/utils/functions/forse.cpp
+               src/utils/functions/heat_dissipation.cpp
                src/utils/particle_box.cpp
                src/utils/iterator.cpp
                src/core/settings/root.cpp
                src/core/settings/customs.cpp)
 
 target_include_directories(project-materials PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}          # корень проекта
-    ${CMAKE_CURRENT_SOURCE_DIR}/src      # чтобы "Headers/xxx.h" работало
-    ${CMAKE_CURRENT_SOURCE_DIR}/Headers  # чтобы просто "xxx.h" работало
+    ${CMAKE_CURRENT_SOURCE_DIR}      
+    ${CMAKE_CURRENT_SOURCE_DIR}/src  
+    ${CMAKE_CURRENT_SOURCE_DIR}/Headers
 )
 
 
