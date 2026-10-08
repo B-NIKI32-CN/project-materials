@@ -5,10 +5,10 @@ struct Particle_box;
 class Iterator
 {
     private:
-        Particle_box* particle_box;
+        Particle_box* particleBox;
 
-        double particle_mass;
-        double delta_time;
+        double particleMass;
+        double deltaTime;
 
         double movability;
 
@@ -17,19 +17,19 @@ class Iterator
         Iterator();
         ~Iterator();
 
-        void spawn_particle(double , double);
+        double* get_xCoordsParticles() const;
+        double* get_yCoordsParticles() const;
+        double get_deltaTime() const;
+        unsigned int get_quantityParticles() const;
+        void get_statsParticles() const;
 
-        double* getX_coords_particles();
-        double* getY_coords_particles();
-        double get_delta_time();
+        void set_zeroVelosityParticles();
+        void set_deltaTime(double);
 
-        unsigned int get_quantity_particles();
-
-        void show_particles_stats();
-
-        void set_cold();
+        unsigned int spawnParticle(double , double);
+        unsigned int spawnHexagon(double , double, double, unsigned int);
 
         void doIteration();
-        void ForseSolver();
-        void Particles_update();
+        void forseSolver();
+        void updateParticles();
 };

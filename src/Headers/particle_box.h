@@ -2,17 +2,17 @@
 
 struct Particle_box
 {
-    const unsigned int max_quantity_particles;    
-    unsigned int now_quantity_particles;
+    const unsigned int maxQuantityParticles;    
+    unsigned int nowQuantityParticles;
 
-    double* x_coords_particles;
-    double* y_coords_particles;
+    double* xCoordsParticles;
+    double* yCoordsParticles;
 
-    double* x_velocity_particles;
-    double* y_velocity_particles;
+    double* xVelocityParticles;
+    double* yVelocityParticles;
 
-    double* x_forse_particles;
-    double* y_forse_particles;
+    double* xForseParticles;
+    double* yForseParticles;
 
     Particle_box(unsigned int);
     ~Particle_box();

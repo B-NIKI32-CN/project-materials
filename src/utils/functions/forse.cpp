@@ -42,11 +42,20 @@
 // double r2 = 50;
 // double r3 = 60;
 
-double E1 = -50; // гексагональная решетка
-double E2 = 50;
-double r1 = 50;
-double r2 = 70;
-double r3 = 85;
+// double E1 = -50; // гексагональная решетка
+// double E2 = 50;
+// double r1 = 50;
+// double r2 = 70;
+// double r3 = 85;
+
+
+double E1 = -100; // гексагональная решетка -сокращаю радиусы
+double E2 = 100;
+double r1 = 10;
+double r2 = 15;
+double r3 = 19;
+
+double bondRange {(r1+r2) / 2};
 
 double a1 = 4*E1*r1 / (r2 - r1);
 double b1 = -4*E1*std::pow(r1, 2) / (r2 - r1);
